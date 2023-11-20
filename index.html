@@ -14,6 +14,10 @@
     <h2>Straight Line Graphs</h2>
     <canvas id="myChart" class="straight"></canvas>
 
+    <!----------- For curve Graph --------------->
+    <h2>Curved Graphs</h2>
+    <canvas id="myCurve" class="straight"></canvas>
+
     <!---------- Script for Straight Graph ------------>
     <script>
         const xValues = [];
@@ -48,5 +52,40 @@
             }
             }
     </script>
+
+    <!--------- Script for Curve Graph -------------->
+    <script>
+        var xValue = [];
+        var yValue = [];
+        generateData("Math.sin(x)", 0, 10, 0.5);
+        
+        new Chart("myCurve", {
+            type: "line",
+            data: {
+                labels: xValue,
+                datasets: [{
+                fill: false,
+                pointRadius: 4,
+                backgroundColor: "rgb(0,0,255)",
+                borderColor: "rgba(0,0,255,0.5)",
+                data: yValue
+                }]
+            },    
+            options: {
+                legend: {display: false},
+                title: {
+                display: true,
+                text: "y = sin(x)",
+                fontSize: 16
+                }
+            }
+            });
+            function generateData(value, i1, i2, step = 1) {
+            for (let x = i1; x <= i2; x += step) {
+                yValue.push(eval(value));
+                xValue.push(x);
+            }
+            }
+        </script>
 </body>
 </html>
